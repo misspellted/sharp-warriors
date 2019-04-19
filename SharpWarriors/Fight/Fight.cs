@@ -1,41 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Eight
 {
-    public class Fight
+    public class Fight : IFightSubscriber
     {
         public Warrior One { get; private set; }
         public Warrior Two { get; private set; }
 
-        public List<string> AttackHistory { get; private set; } = new List<string>();
+        private readonly List<IFightSubscriber> fightSubscribers;
 
         public Fight(Warrior one, Warrior two)
         {
             One = one;
             Two = two;
+
+            fightSubscribers = new List<IFightSubscriber>();
+        }
+
+        public void AddSubscriber(IFightSubscriber fightSubscriber)
+        {
+            fightSubscribers.Add(fightSubscriber);
+        }
+
+        public void OnAttack(Warrior attacker, Warrior defender, int attack, int damage)
+        {
+            // Notify any subscribers.
+            fightSubscribers.ForEach(fightSubscriber => fightSubscriber.OnAttack(attacker, defender, attack, damage));
+        }
+
+        public void OnDefeat(Warrior defeated)
+        {
+            // Notify any subscribers.
+            fightSubscribers.ForEach(fightSubscriber => fightSubscriber.OnDefeat(defeated));
+        }
+
+        public void OnSurvive(Warrior surviving)
+        {
+            // Nofity any subscribers.
+            fightSubscribers.ForEach(fightSubscriber => fightSubscriber.OnSurvive(surviving));
         }
 
         public void Attack(Warrior attacker, Warrior defender)
         {
-            int damage = defender.DefendAgainstAttack(attacker.GetAttack());
+            int attack = attacker.GetAttack();
+            int damage = defender.DefendAgainstAttack(attack);
 
-            AttackHistory.Add(string.Format("{0} attacked {1}, dealing {2} damage.", attacker.Name, defender.Name, damage));
+            OnAttack(attacker, defender, attack, damage);
 
-            // If the attacking warrior defeated the defending warrior, add that to the history as well.
-            // Otherwise, add the remaining hit points to the history.
-            switch (defender.HitPoints)
+            // Check for defeat of the defender.
+            if (defender.HitPoints == 0)
             {
-                case 0:
-                    AttackHistory.Add(string.Format("{0} has been defeated.", defender.Name));
-                    break;
-                case 1:
-                    AttackHistory.Add(string.Format("{0} is barely clinging to life.", defender.Name, defender.HitPoints));
-                    break;
-                default:
-                    AttackHistory.Add(string.Format("{0} has {1} hit points left.", defender.Name, defender.HitPoints));
-                    break;
+                OnDefeat(defender);
+            }
+            else
+            {
+                OnSurvive(defender);
             }
         }
 

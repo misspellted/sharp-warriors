@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Eight
 {
@@ -21,13 +19,13 @@ namespace Eight
 
         public int DefendAgainstAttack(int attack)
         {
-            int blockable = new Random().Next(1, BlockingDefense);
+            int blockable = new Random().Next(0, BlockingDefense);
 
             int blocked = Math.Min(blockable, attack);
 
             int damage = attack - blocked;
 
-            HitPoints = Math.Max(0, HitPoints - (attack - blocked));
+            HitPoints = Math.Max(0, HitPoints - damage);
 
             return damage;
         }

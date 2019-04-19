@@ -45,6 +45,8 @@ namespace Eight
 
             Fight fight = new Fight(one, two);
 
+            fight.AddSubscriber(new ConsoleFightSubscriber());
+
             fight.Start();
 
             // Allow the viewer to actually see the attack history, without the window closing first.

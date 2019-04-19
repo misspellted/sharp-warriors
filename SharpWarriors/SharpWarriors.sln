@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eight", "Fight\Eight.csproj", "{BBCE0319-D73F-4B7F-8EF7-6C3C919AE7B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EightTests", "FightTests\EightTests.csproj", "{A7BCA671-1308-46B1-9009-80C82AB89EAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBCE0319-D73F-4B7F-8EF7-6C3C919AE7B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBCE0319-D73F-4B7F-8EF7-6C3C919AE7B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBCE0319-D73F-4B7F-8EF7-6C3C919AE7B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBCE0319-D73F-4B7F-8EF7-6C3C919AE7B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7BCA671-1308-46B1-9009-80C82AB89EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7BCA671-1308-46B1-9009-80C82AB89EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BCA671-1308-46B1-9009-80C82AB89EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7BCA671-1308-46B1-9009-80C82AB89EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02BEA10A-C93F-4720-AE70-F23E0F975218}
+	EndGlobalSection
+EndGlobal
